@@ -10,9 +10,9 @@ Please follow the instructions below and fill in the information requested when 
 
 |               | Information   |
 |:-------------:|:-------------:|
-| Student Name  | name-here     |
-| Student ID    | id-here       |
-| Student Email | email-here    |
+| Student Name  | Ze Lei     |
+| Student ID    | 918312764     |
+| Student Email | zlei1@mail.sfsu.edu  |
 
 
 
