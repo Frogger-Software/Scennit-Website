@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="../css/form.css">
+    <title>Post Image</title>
+</head>
+<body>
+    <ul >
+        <li ><a href="./home.html">Home</a></li>
+        <li ><a href="./login.html">Login</a></li>
+        <li ><a href="./registration.html">Register</a></li>
+        <li ><a class="active" href="./postimage.html">Post Image</a></li>
+        <li ><a href="./Imagepost.html">Look at Image</a></li>
+    </ul>
+    <div class="center">
+    <header>
+        <h1>Post Image Form</h1>
+    </header>
+    <form>
+        <div>
+            <label><strong>Title</strong></label> 
+            <input type="text" required/>
+        </div>
+        <div>
+            <label><strong>Description</strong></label>
+            <input type="text"/>
+        </div>
+        <div>
+            <label><strong>Image</strong></label>
+            <input class="fileInput" type="file" required/>
+        </div>
+        <div>
+            <label>Acceptable Use Policy</label>
+        <input type="checkbox" required/>
+        </div>
+        <button type = "submit">Submit</button>
+        <button type = "reset">Reset</button>
+    </form>
+    </div>
+</body>
+</html>

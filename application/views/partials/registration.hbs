@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="../css/form.css">
+    <script defer type="text/javascript" src="../js/registration.js"></script>
+    <title>Registration</title>
+</head>
+<body>
+    <ul >
+        <li ><a href="./home.html">Home</a></li>
+        <li ><a href="./login.html">Login</a></li>
+        <li ><a class="active" href="./registration.html">Register</a></li>
+        <li ><a href="./postimage.html">Post Image</a></li>
+        <li ><a href="./Imagepost.html">Look at Image</a></li>
+    </ul>
+    <div class="center">
+    <header>
+        <h1 >Registration Form</h1>
+    </header>
+    <form>
+        <div>
+            <label><strong>Username:</strong></label> 
+            <input type = "text" required id="username"/>
+        </div>
+        <div>
+            <label><strong>Email:</strong></label> 
+            <input type = "email" required id="email" placeholder="jdoe1@mail.sfsu.edu"/>
+        </div>
+        <div>
+            <label><strong>Password:</strong></label>
+            <input type = "password" required id="password"/>
+        </div>
+        <div>
+            <label><strong>Confirm Password:</strong></label>
+            <input type = "password" required id="password-confirm"/>
+        </div>
+        <div>
+            Are you 13+ years of age?
+            <input type="checkbox" required/>
+        </div>
+        <div>
+            <a href="https://knowyourmeme.com/memes/monkatos" class="link">TOS</a> and <a href="https://www.bing.com/search?q=nowhere" class="link">Privacy Rules</a>
+            <input id="tos" type="checkbox" required/>
+        </div>
+        <button type = "submit" id="register-button">Register</button>
+        <button type = "reset">Reset</button>
+    </form>
+    </div>
+</body>
+</html>
