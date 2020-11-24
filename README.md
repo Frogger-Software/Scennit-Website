@@ -19,9 +19,10 @@ Please follow the instructions below and fill in the information requested when 
 # Build/Run Instructions
 
 ## Build Instructions
-1. steps here
-2. steps here
+1. cd application
+2. npm install
 
 ## Run Instructions
-1. steps here
-2. steps here 
+1. npm start
+2. navigate to localhost 
+3000 on browser 
