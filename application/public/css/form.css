@@ -1,0 +1,153 @@
+body{
+    background-image: url("../images/martin-fisher-5577331_1920.jpg");
+    background-position: top;
+    font-size: 1.2em;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    background-color: rgba(64,64,64,2);
+    color: orange
+}
+
+div{
+    margin-top: 10px;
+    margin-bottom: 5px
+}
+
+input {
+    border: 1px solid grey;
+    border-radius: 10px;
+    float: right;
+    margin-left: 40px;
+    color: black
+}
+
+h1{
+    color: gold;
+    margin: 2px;
+    text-align: center;
+    font-variant: small-caps
+}
+
+h1:hover{
+    color: rgb(167, 51, 167);
+}
+
+.center{
+    display: flex;
+    flex-flow: column wrap;
+    background-color: inherit;
+    border: solid white;
+    border-radius: 20px;
+    padding: 15px 30px;
+    position: relative;
+    margin-top: 5em;
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+}
+
+.home{
+    width: 1000px;
+}
+
+.link{
+    color: crimson;
+}
+
+.fileInput{
+    color: white;
+    border-radius: 0px;
+    border: transparent
+}
+
+button{
+    background-color: #4CAF50;
+    color: white;
+    font-weight: 800;
+    text-align: center;
+    padding: 9px 12px;
+    border-radius: 30px;
+    width: 100%;
+    margin: 5px
+}
+
+button[type="reset"]{
+    background-color: rgb(31, 125, 233);
+    width: 100px;
+}
+
+button:hover{
+    border-color: white
+}
+
+ul{
+    list-style-type: none;
+    background-color: #f1f1f1;
+    position: fixed;
+    margin: 0;
+    padding: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 500;
+}
+
+li a{
+    float: left;
+    color: orange;
+    display: block;
+    padding: 8px 16px;
+    text-decoration: none;
+    border: white
+}
+
+li a:hover {
+    background-color: #555;
+    color: white
+}
+
+.active {
+    background-color: #3f86c9;
+    color: white;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-column-gap: 10px;
+}
+
+.flex-container {
+    display: flex;
+    flex-flow: column wrap;
+    height: 200px;
+    width: 200px;
+    justify-content: top center;
+    border-radius: 10px;
+    border: solid white;
+    margin: .2em;
+    padding: 2px;
+}
+
+.flex-container > div {
+    margin: 4px
+}
+
+.flex-title{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
+}
+
+.flex-picture{
+    height: 80%;
+    text-align: center;
+}
+
+#comments{
+    text-align:center
+}
+
+footer{
+    text-align: center;
+}

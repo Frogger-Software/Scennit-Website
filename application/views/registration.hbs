@@ -1,0 +1,48 @@
+<head>
+    <script defer type="text/javascript" src="public/js/registration.js"></script>
+    <title>Registration</title>
+</head>
+
+<body>
+    {{!-- <ul>
+        <li><a href="./home">Home</a></li>
+        <li><a href="./login">Login</a></li>
+        <li><a class="active" href="./registration">Register</a></li>
+        <li><a href="./postimage">Post Image</a></li>
+        <li><a href="./Imagepost">Look at Image</a></li>
+    </ul> --}}
+    <div class="center">
+        <header>
+            <h1>Registration Form</h1>
+        </header>
+        <form>
+            <div>
+                <label><strong>Username:</strong></label>
+                <input type="text" required id="username" />
+            </div>
+            <div>
+                <label><strong>Email:</strong></label>
+                <input type="email" required id="email" placeholder="jdoe1@mail.sfsu.edu" />
+            </div>
+            <div>
+                <label><strong>Password:</strong></label>
+                <input type="password" required id="password" />
+            </div>
+            <div>
+                <label><strong>Confirm Password:</strong></label>
+                <input type="password" required id="password-confirm" />
+            </div>
+            <div>
+                Are you 13+ years of age?
+                <input type="checkbox" required />
+            </div>
+            <div>
+                <a href="https://knowyourmeme.com/memes/monkatos" class="link">TOS</a> and <a
+                    href="https://www.bing.com/search?q=nowhere" class="link">Privacy Rules</a>
+                <input id="tos" type="checkbox" required />
+            </div>
+            <button type="submit" id="register-button">Register</button>
+            <button type="reset">Reset</button>
+        </form>
+    </div>
+</body>
