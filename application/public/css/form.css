@@ -39,13 +39,14 @@ h1:hover{
     border-radius: 20px;
     padding: 15px 30px;
     position: relative;
-    margin: 5em 40%;
-    width: 400px
+    margin-top: 5em;
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
 }
 
 .home{
     width: 1000px;
-    margin-left: 25%;
 }
 
 .link{
@@ -86,7 +87,8 @@ ul{
     padding: 0;
     top: 0;
     left: 0;
-    width: 100%
+    width: 100%;
+    z-index: 500;
 }
 
 li a{
@@ -139,5 +141,13 @@ li a:hover {
 
 .flex-picture{
     height: 80%;
+    text-align: center;
+}
+
+#comments{
+    text-align:center
+}
+
+footer{
     text-align: center;
 }
