@@ -30,5 +30,6 @@ fetch('https://jsonplaceholder.typicode.com/albums/2/photos')
 function fade(e){
     e.style.opacity = 1;
     (function fade(){(e.style.opacity-=.1)<0?e.remove():setTimeout(fade,90)})();
-    photoCount.innerText--;
+    //photoCount.innerText--;
+photoCount.innerHTML = document.getElementById('grid-container').childElementCount - 1;
 }
