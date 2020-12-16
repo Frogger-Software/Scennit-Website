@@ -4,6 +4,7 @@ var db = require('../config/database');
 const { successPrint, errorPrint } = require('../helpers/debug/debugprinters');
 const { check, validationResult } = require('express-validator');
 const UserError = require("../helpers/error/UserError");
+var bcrypt = require('bcrypt');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -45,11 +46,9 @@ router.post('/register', [
           200
         );
       }
-    })
-    .then(([results, fields]) => {
+    }).then(([results, fields]) => {
       if(results && results.length == 0){
-        let baseSQL = "INSERT INTO users (username, email, password, created) VALUES (?,?,?, now());"
-        return db.execute(baseSQL, [username, email, password]);
+        return bcrypt.hash(password, 13);
       }else{
         throw new UserError(
           "Registration Failed: Email already exists",
@@ -57,6 +56,10 @@ router.post('/register', [
           200
         );
       }
+    })
+    .then((hashedPassword) => {
+        let baseSQL = "INSERT INTO users (username, email, password, created) VALUES (?,?,?, now());"
+        return db.execute(baseSQL, [username, email, hashedPassword]);
     })
     .then(([results, fields]) => {
       if(results && results.affectedRows){
@@ -96,12 +99,21 @@ router.post('/login', [
     console.log({ errors: errors.array() });
     res.redirect('/login');
   }else{
-    let baseSQL = "SELECT username, password FROM users WHERE username=? AND password=?;"
-    db.execute(baseSQL,[username,password])
+    let baseSQL = "SELECT username, password FROM users WHERE username=?;"
+    db.execute(baseSQL,[username])
     .then(([results, fields]) => {
       if(results && results.length == 1){
+        let hashedPassword = results[0].password;
+        return bcrypt.compare(password, hashedPassword);
+        
+      }else{
+        throw new UserError("invalid username and/or password", "/login", 200);
+      }
+    })
+    .then((passwordsMatched) => {
+      if(passwordsMatched){
         successPrint(`User ${username} is logged in`);
-        //res.cookie("logged", username, {})
+        // //res.cookie("logged", username, {})
         res.locals.logged = true;
         res.render('home');
       }else{
