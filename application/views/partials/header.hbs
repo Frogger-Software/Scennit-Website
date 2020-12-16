@@ -1,10 +1,14 @@
 <script src="https://kit.fontawesome.com/937f7202a1.js" crossorigin="anonymous"></script>
 <ul>
-    <li><a href="./">Home</a></li>
-    <li><a href="./login">Login</a></li>
-    <li><a href="./registration">Register</a></li>
-    <li><a href="./postimage">Post Image</a></li>
-    <li><a href="./Imagepost">Look at Image</a></li>
+    <li><a href="/">Home</a></li>
+    {{#if logged}}
+    <li><a href="/users/logout">Log Out</a></li>
+    {{else}}
+    <li><a href="/login">Login</a></li>
+    {{/if}}
+    <li><a href="/registration">Register</a></li>
+    <li><a href="/postimage">Post Image</a></li>
+    <li><a href="/Imagepost">Look at Image</a></li>
     <li id="search-container">
         <form id="search-bar">
         <input type="text" placeholder="Search.." id="search-text" name="search-text">

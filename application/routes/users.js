@@ -103,7 +103,7 @@ router.post('/login', [
         successPrint(`User ${username} is logged in`);
         //res.cookie("logged", username, {})
         res.locals.logged = true;
-        res.redirect('/');
+        res.render('home');
       }else{
         throw new UserError("Invalid username and/or password", "/login", 200);
       }
