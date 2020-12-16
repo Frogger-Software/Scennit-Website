@@ -43,8 +43,3 @@ passwordConfirm.onchange = function(event){
     }
 }
 
-// let registerButton = document.getElementById('register-button');
-// registerButton.onclick = function(event){
-
-// }
-
