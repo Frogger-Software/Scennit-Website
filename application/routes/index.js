@@ -22,5 +22,12 @@ router.get('/postimage', (req, res, next) => {
   res.render("postimage");
 })
 
+router.post('/submit', (req,res,next) => {
+  req.check('username', 'invalid username').isLength({min: 3});
+  req.check('username', 'invalid username').isAlphanumeric();
+  req.check('email', 'invalid email').isEmail();
+  req.check('password', 'invalid password').isStrongPassword().equals(req.body.cpassword);
+})
+
 
 module.exports = router;

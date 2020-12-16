@@ -5,7 +5,7 @@ const pool = mysql.createPool({
     host: 'localhost',
     user: 'photoapp',
     password: 'csc317',
-    database: 'csc317db',
+    database: 'csc317db'
     //debug: true,
 });
 
