@@ -2,25 +2,34 @@ var express = require('express');
 var router = express.Router();
 var db = require('../config/database');
 const { successPrint, errorPrint } = require('../helpers/debug/debugprinters');
+const { check, validationResult } = require('express-validator');
+const UserError = require("../helpers/error/UserError");
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
-router.post('/register', (req, res, next) => {
+router.post('/register', [
+  check('username').isLength({min: 3}),
+  check('email').isEmail(),
+  check('password').isStrongPassword().withMessage('weak password'),
+  check('cpassword').custom(async (cpassword, {req}) => { 
+    const password = req.body.password 
+
+    if(password !== cpassword){ 
+      throw new Error('Passwords must be same') 
+    } 
+  })
+],(req, res, next) => {
   let username = req.body.username;
   let email = req.body.email;
   let password = req.body.password;
-  let cpassword = req.body.password;
 
-  req.check('username', 'invalid username').isLength({min: 3});
-  req.check('email', 'invalid email').isEmail();
-  req.check('password', 'passwords do not match').equals(req.body.cpassword);
+  var errors = validationResult(req);
 
-  var errors = req.validationErrors();
-
-  if(errors){
+  if (!errors.isEmpty()) {
+    console.log({ errors: errors.array() });
     res.redirect('/registration');
   }else{
 
@@ -72,6 +81,44 @@ router.post('/register', (req, res, next) => {
       }
     });
   } 
+});
+
+router.post('/login', [
+  check('username').notEmpty(),
+  check('password').notEmpty()
+], (req, res, next) => {
+  let username = req.body.username;
+  let password = req.body.password;
+
+  var errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    console.log({ errors: errors.array() });
+    res.redirect('/login');
+  }else{
+    let baseSQL = "SELECT username, password FROM users WHERE username=? AND password=?;"
+    db.execute(baseSQL,[username,password])
+    .then(([results, fields]) => {
+      if(results && results.length == 1){
+        successPrint(`User ${username} is logged in`);
+        //res.cookie("logged", username, {})
+        res.locals.logged = true;
+        res.redirect('/');
+      }else{
+        throw new UserError("Invalid username and/or password", "/login", 200);
+      }
+    })
+    .catch((err) => {
+      errorPrint("user login failed");
+      if(err instanceof UserError){
+        errorPrint(err.getMessage());
+        res.status(err.getStatus());
+        res.redirect('/login');
+      }else{
+        next(err);
+      }
+    })
+  }
 });
 
 module.exports = router;

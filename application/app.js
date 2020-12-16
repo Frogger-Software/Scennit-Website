@@ -8,7 +8,6 @@ var usersRouter = require('./routes/users');
 var dbRouter = require('./routes/dbtest');
 var errorPrint = require('./helpers/debug/debugprinters').errorPrint;
 var requestPrint = require('./helpers/debug/debugprinters').requestPrint;
-var expressValidator = require('express-validator');
 var expressSession = require('express-session');
 
 var app = express();
@@ -30,7 +29,6 @@ app.set("view engine", "hbs");
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(expressValidator());
 app.use(cookieParser());
 app.use("/public", express.static(path.join(__dirname, 'public')));
 app.use(expressSession({secret: 'what', saveUninitialized: false, resave: false}));

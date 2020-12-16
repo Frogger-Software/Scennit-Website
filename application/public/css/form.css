@@ -16,7 +16,6 @@ input {
     border: 1px solid grey;
     border-radius: 10px;
     float: right;
-    margin-left: 40px;
     color: black
 }
 
@@ -79,36 +78,7 @@ button:hover{
     border-color: white
 }
 
-ul{
-    list-style-type: none;
-    background-color: #f1f1f1;
-    position: fixed;
-    margin: 0;
-    padding: 0;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 500;
-}
 
-li a{
-    float: left;
-    color: orange;
-    display: block;
-    padding: 8px 16px;
-    text-decoration: none;
-    border: white
-}
-
-li a:hover {
-    background-color: #555;
-    color: white
-}
-
-.active {
-    background-color: #3f86c9;
-    color: white;
-}
 
 .grid-container {
     display: grid;
@@ -150,4 +120,64 @@ li a:hover {
 
 footer{
     text-align: center;
+}
+
+ul{
+    list-style-type: none;
+    background-color: #f1f1f1;
+    position: fixed;
+    margin: 0;
+    padding: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 500;
+    display:flex;
+    align-items:center;
+}
+
+li a{
+    float: left;
+    color: orange;
+    display: block;
+    padding: 8px 16px;
+    text-decoration: none;
+    border: white
+}
+
+li a:hover {
+    background-color: #555;
+    color: white
+}
+
+.active {
+    background-color: #3f86c9;
+    color: white;
+}
+
+#search-text{
+    width: 600px;
+    float: left;
+    border-radius: 2px;
+    margin: 0px;
+    border-right: none;
+
+}
+
+#search-bar{
+    display:flex;
+    align-items:center;
+}
+
+#search-button{
+    float: left;
+    background: #4eda42;
+    color: white;
+    border-left: none;
+    cursor: pointer;
+    width:20%;
+    padding: 0px;
+    margin: 0px;
+    border-radius: 0px;
+    
 }
