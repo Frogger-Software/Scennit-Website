@@ -4,6 +4,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var sessions = require('express-session');
 var mysqlSession = require('express-mysql-session')(sessions);
+var flash = require('express-flash');
 
 var handlebars = require('express-handlebars');
 var indexRouter = require('./routes/index');
@@ -20,9 +21,11 @@ app.engine(
         layoutsDir: path.join(__dirname, "views/layouts"),
         partialsDir: path.join(__dirname, "views/partials"),
         extname: ".hbs",
-        defaultLayout: "home",
+        defaultLayout: "body",
         helpers: {
-            /**for helpers */
+            emptyObject: (obj) => {
+                return !(obj.constructor === Object && Object.keys(obj).length == 0);
+            }
         }
     })
 );
@@ -36,6 +39,7 @@ app.use(sessions({
     saveUninitialized: false
 }))
 
+app.use(flash());
 app.set("view engine", "hbs");
 app.use(logger('dev'));
 app.use(express.json());
@@ -50,6 +54,7 @@ app.use((req, res, next) => {
 });
 
 app.use((req, res, next) => {
+    console.log(req.session);
     if (req.session.username) {
         res.locals.logged = true;
     }

@@ -7,7 +7,7 @@ function alphanumericCheck(str) {
 }
 
 let username = document.getElementById('username');
-username.onchange = function (event) {
+username.onchange = function () {
     var str = username.value;
     if (!alphanumericCheck(str)) {
         alert("Username must start with a character ([a-zA-Z])");
@@ -18,7 +18,7 @@ username.onchange = function (event) {
 }
 
 let password = document.getElementById('password');
-password.onchange = function (event) {
+password.onchange = function () {
     var str = password.value;
     const passRegex = new RegExp("^(?=.*[A-Z])(?=.*[0-9])(?=.*[/\*-+!@#\$%\^&])");
     if (str.length < 8) {
@@ -30,7 +30,7 @@ password.onchange = function (event) {
 }
 
 let passwordConfirm = document.getElementById('password-confirm');
-passwordConfirm.onchange = function (event) {
+passwordConfirm.onchange = function () {
     var str1 = password.value;
     var str2 = passwordConfirm.value;
     if (str1 != str2) {

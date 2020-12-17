@@ -78,8 +78,6 @@ button:hover{
     border-color: white
 }
 
-
-
 .grid-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -156,7 +154,7 @@ li a:hover {
 }
 
 #search-text{
-    width: 600px;
+    width: 100%;
     float: left;
     border-radius: 2px;
     margin: 0px;
@@ -167,6 +165,7 @@ li a:hover {
 #search-bar{
     display:flex;
     align-items:center;
+    width: 600px;
 }
 
 #search-button{
@@ -178,6 +177,29 @@ li a:hover {
     width:20%;
     padding: 0px;
     margin: 0px;
-    border-radius: 0px;
-    
+    border-radius: 0px
+}
+
+#flash-message{
+    position: fixed;
+    left: 50%;
+    top:25%;
+    z-index: 600;
+    background-color: white;
+    border-radius: 8px;
+    border: solid;
+    transform: translate(-50%,0);
+
+}
+
+#flash-message div{
+    text-align: center;
+}
+
+.alert-danger{
+    color:red
+}
+
+.alert-success{
+    color:green
 }

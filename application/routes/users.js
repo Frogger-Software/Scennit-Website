@@ -6,11 +6,6 @@ const { check, validationResult } = require('express-validator');
 const UserError = require("../helpers/error/UserError");
 var bcrypt = require('bcrypt');
 
-/* GET users listing. */
-router.get('/', function (req, res, next) {
-  res.send('respond with a resource');
-});
-
 router.post('/register', [
   check('username').isLength({ min: 3 }),
   check('email').isEmail(),
@@ -64,6 +59,7 @@ router.post('/register', [
       .then(([results, fields]) => {
         if (results && results.affectedRows) {
           successPrint("User was created");
+          req.flash('success', 'user account has been made');
           res.redirect('/login');
         } else {
           throw new UserError(
@@ -77,6 +73,7 @@ router.post('/register', [
         errorPrint("User not created");
         if (err instanceof UserError) {
           errorPrint(err.getMessage());
+          req.flash('error', err.getMessage());
           res.status(err.getStatus());
           res.redirect(err.getRedirectURL());
         } else {
@@ -117,6 +114,8 @@ router.post('/login', [
           successPrint(`User ${username} is logged in`);
           req.session.username = username;
           req.session.userId = userId;
+          res.locals.logged = true;
+          req.flash('success', 'You have successfully logged in');
           res.redirect('/');
         } else {
           throw new UserError("Invalid username and/or password", "/login", 200);
@@ -126,6 +125,7 @@ router.post('/login', [
         errorPrint("user login failed");
         if (err instanceof UserError) {
           errorPrint(err.getMessage());
+          req.flash('error', err.getMessage());
           res.status(err.getStatus());
           res.redirect('/login');
         } else {
