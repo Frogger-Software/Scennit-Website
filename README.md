@@ -26,5 +26,4 @@ Please follow the instructions below and fill in the information requested when 
 
 ## Run Instructions
 1. npm start
-2. navigate to localhost 
-3000 on browser 
+2. navigate to localhost:3000 on browser 
