@@ -14,7 +14,7 @@ router.post('/register', [
     const password = req.body.password
 
     if (password !== cpassword) {
-      throw new Error('Passwords must be same')
+      throw new Error('Passwords must be the same')
     }
   })
 ], (req, res, next) => {
@@ -93,7 +93,7 @@ router.post('/login', [
   var errors = validationResult(req);
 
   if (!errors.isEmpty()) {
-    console.log({ errors: errors.array() });
+    req.flash({ errors: errors.array() });
     res.redirect('/login');
   } else {
     let baseSQL = "SELECT id, username, password FROM users WHERE username=?;"

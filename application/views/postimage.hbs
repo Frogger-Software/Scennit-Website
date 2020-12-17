@@ -14,18 +14,18 @@
         <header>
             <h1>Post Image Form</h1>
         </header>
-        <form>
+        <form method="POST" enctype="multipart/form-data" action="/posts/createPost">
             <div>
                 <label><strong>Title</strong></label>
-                <input type="text" required />
+                <input type="text" required name="title"/>
             </div>
             <div>
                 <label><strong>Description</strong></label>
-                <input type="text" />
+                <input type="text" require name="description"/>
             </div>
             <div>
                 <label><strong>Image</strong></label>
-                <input class="fileInput" type="file" required />
+                <input class="fileInput" type="file" required name="uploadImage"/>
             </div>
             <div>
                 <label>Acceptable Use Policy</label>
