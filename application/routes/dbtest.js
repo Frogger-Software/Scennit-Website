@@ -3,7 +3,7 @@ const router = express.Router();
 const db = require('../config/database');
 
 
-router.get('/getAllUsers', (req,res,next) => {
-    
+router.get('/getAllUsers', (req, res, next) => {
+
 })
 module.exports = router;
