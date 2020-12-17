@@ -204,8 +204,13 @@ li a:hover {
 
 #banner{
     display:flex;
-    justify-content:flex-end;
+    justify-content:center;
     align-items:center;
-    margin-left: 20em;
     font-style: oblique;
+    background-color: rgb(51, 48, 48);
+    width: 7em;
+}
+
+#banner:hover{
+    color: rgb(167, 51, 167)
 }
