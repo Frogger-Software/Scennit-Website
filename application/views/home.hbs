@@ -1,4 +1,5 @@
 <head>
+    <link rel="stylesheet" type="text/css" href="/public/css/home.css">
     <script defer type="text/javascript" src="/public/js/home.js"></script>
     <title>Scennit: the backdoor of the internet</title>
 </head>
@@ -8,13 +9,11 @@
         <header>
             <h1 class="title">Scennit</h1>
         </header>
-        <form>
-            <div class="grid-container">
-                {{#each results}}
-                    {{> card this}}
-                {{/each}}
-            </div>
-            {{!-- <label>Number of Photos: </label><text id="photo-count">0</text> --}}
-        </form>
+        <div class="grid-container" id="main-content">
+            {{#each results}}
+            {{> card this}}
+            {{/each}}
+        </div>
+        {{!-- <label>Number of Photos: </label><text id="photo-count">0</text> --}}
     </div>
 </body>

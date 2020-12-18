@@ -36,10 +36,6 @@ h1:hover{
     color: rgb(167, 51, 167);
 }
 
-.home{
-    width: 80vw;
-}
-
 .link{
     color: crimson;
 }
@@ -68,42 +64,6 @@ button[type="reset"]{
 
 button:hover{
     border-color: white
-}
-
-.grid-container {
-    display: grid;
-    grid-template-columns: auto auto auto auto;
-    justify-content: space-evenly;
-}
-
-@media screen and (max-width: 1100px){
-    .grid-container{
-        grid-template-columns: auto auto auto;
-    }
-}
-
-@media screen and (max-width: 800px){
-    .grid-container{
-        grid-template-columns: auto auto;
-    }
-}
-
-@media screen and (max-width: 600px){
-    .grid-container{
-        grid-template-columns: auto;
-    }
-}
-
-.flex-container {
-    display: flex;
-    flex-flow: column;
-    height: 350px;
-    width: 200px;
-    border-radius: 10px;
-    border: solid white;
-    padding: .5em;
-    overflow: hidden;
-    margin-top: 1em;
 }
 
 .hide-overflow{
@@ -141,7 +101,7 @@ button:hover{
     text-align: center;
 }
 
-ul{
+#nav-bar{
     list-style-type: none;
     background-color: #f1f1f1;
     position: fixed;
@@ -157,7 +117,7 @@ ul{
     white-space: nowrap;
 }
 
-li a{
+.nav-element{
     float: left;
     color: orange;
     display: block;
@@ -166,7 +126,7 @@ li a{
     border: white
 }
 
-li a:hover {
+.nav-element:hover {
     background-color: #555;
     color: white
 }
@@ -201,20 +161,18 @@ li a:hover {
     border-radius: 0px;
 }
 
-#flash-message{
+.alert{
     position: fixed;
     left: 50%;
-    top:25%;
+    top:20%;
     z-index: 600;
     background-color: black;
     border-radius: 8px;
-    border: solid rgb(172, 19, 172);
+    border: solid;
     transform: translate(-50%,0);
-
-}
-
-#flash-message div{
     text-align: center;
+    padding: 3px;
+
 }
 
 .alert-danger{
