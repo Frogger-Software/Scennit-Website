@@ -29,6 +29,7 @@ router.get('/post/:id(\\d+)', (req,res,next) => {
   WHERE p.id=?;";
 
   let postId = req.params.id;
+  
   db.execute(baseSQL,[postId])
   .then(([results,fields]) => {
     if(results && results.length){

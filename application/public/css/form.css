@@ -92,11 +92,6 @@ button:hover{
     color: orange
 }
 
-#comments{
-    text-align:center;
-    width: 90vw
-}
-
 #footer{
     text-align: center;
 }
@@ -198,34 +193,10 @@ a{
     text-decoration: none;
 }
 
-
-#image-post{
-    background-color: inherit;
-    border: solid white;
-    margin-top: 5em;
-    display: grid;
-}
-
-#image-pic{
-    max-width: 50vw;
-    max-height: 70vh
-
-}
-
-#image-info{
-    width: 45vw;
-    grid-area: 1 / 2;
-    height: 45vh
-}
-
 .title{
     color: gold;
     margin: 2px;
     text-align: center;
     font-variant: small-caps;
     font-size: 2em;
-}
-
-#author-name{
-    color: white
 }

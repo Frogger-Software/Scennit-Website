@@ -1,4 +1,5 @@
 <head>
+    <link rel="stylesheet" type="text/css" href="/public/css/imagepost.css">
     <title>Image Post</title>
 </head>
 
@@ -21,16 +22,16 @@
             <em>{{currentPost.created}}</em>
         </div>
     </div>
-    <div id="comments" class="center">
+    <div id="comments-container" class="center">
         <header>
             <label id="comments-title"><strong>Comments</strong></label>
         </header>
         <div id="message list">
 
         </div>
-        <div id="comment-box">
-            <textarea id="comment-box-text"></textarea>
-            <i id="comment-box-button" class="fa fa-comment" aria-hidden="true" style="text-align: center;"></i>
-        </div>
+    </div>
+    <div id="comment-box" class="center">
+        <textarea id="comment-box-text"></textarea>
+        <button type="button"><i id="comment-box-button" class="fa fa-comment" aria-hidden="true"></i></button>
     </div>
 </body>
