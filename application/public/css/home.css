@@ -37,3 +37,8 @@
     overflow: hidden;
     margin-top: 1em;
 }
+
+.small-title{
+    font-size: 1.5em;
+    color: gold;
+}

@@ -180,6 +180,7 @@ button:hover{
 
 #banner{
     font-style: italic;
+    font-variant: small-caps;
     background-color: rgb(51, 48, 48);
     color: orange;
     padding: 8px 16px;

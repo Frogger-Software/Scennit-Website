@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../config/database');
+const UserModel = require('../models/Users');
 const { successPrint, errorPrint } = require('../helpers/debug/debugprinters');
 const { check, validationResult } = require('express-validator');
 const UserError = require("../helpers/error/UserError");
@@ -29,44 +30,40 @@ router.post('/register', [
     res.redirect('/registration');
   } else {
 
-    db.execute("SELECT * FROM users WHERE username=?", [username])
-      .then(([results, fields]) => {
-        if (results && results.length == 0) {
-          return db.execute("SELECT * FROM users WHERE email=?", [email])
-
-        } else {
+    UserModel.usernameExists(username)
+      .then((userDoesNameExist) => {
+        if (userDoesNameExist) {
           throw new UserError(
             "Registration Failed: Username already exists",
             "/registration",
             200
           );
-        }
-      }).then(([results, fields]) => {
-        if (results && results.length == 0) {
-          return bcrypt.hash(password, 13);
         } else {
+          return UserModel.emailExists(email);
+        }
+      })
+      .then((emailDoesExist) => {
+        if (emailDoesExist) {
           throw new UserError(
             "Registration Failed: Email already exists",
             "/registration",
             200
           );
+        } else {
+          return UserModel.create(username, password, email);
         }
       })
-      .then((hashedPassword) => {
-        let baseSQL = "INSERT INTO users (username, email, password, created) VALUES (?,?,?, now());"
-        return db.execute(baseSQL, [username, email, hashedPassword]);
-      })
-      .then(([results, fields]) => {
-        if (results && results.affectedRows) {
-          successPrint("User was created");
-          req.flash('success', 'user account has been made');
-          res.redirect('/login');
-        } else {
+      .then((createdUserId) => {
+        if (createdUserId < 0) {
           throw new UserError(
             "Server Error, user could not be created",
             "/registration",
             500
           );
+        } else {
+          successPrint("User was created");
+          req.flash('success', 'user account has been made');
+          res.redirect('/login');
         }
       })
       .catch((err) => {
