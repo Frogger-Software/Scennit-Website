@@ -1,37 +1,37 @@
 <head>
+    <link rel="stylesheet" type="text/css" href="/public/css/imagepost.css">
     <title>Image Post</title>
 </head>
 
 <body>
-    {{!-- <ul>
-        <li><a href="./home">Home</a></li>
-        <li><a href="./login">Login</a></li>
-        <li><a href="./registration">Register</a></li>
-        <li><a href="./postimage">Post Image</a></li>
-        <li><a class="active" href="./Imagepost">Look at Image</a></li>
-    </ul> --}}
-    <div class="center image-post">
-        <section id="title">
+    <div id="image-post">
+        <div><img src="/{{currentPost.photopath}}" alt="Image Missing" id="image-pic"></div>
+        <div id="image-info">
             <div>
-                <label><strong>Title: would go here</strong></label>
+                <label class="title"><strong>{{currentPost.title}}</strong></label>
             </div>
-        </section>
-        <section id="author">
-            <div>
-                <label><strong>Author: would go here</strong></label>
+            <div class="info-tags">
+                Created By: <label id="author-name">{{currentPost.username}}</label>
             </div>
-        </section>
-        <section id="image"><img src="https://fakeimg.pl/200x100/?retina=1&text=za warudo&font=noto"
-                alt="This was a fake image"></section>
-        <section id="creation time">
-            <div>
-                <label><em>Creation Time: would go here</em></label>
+            <div id="image-desc" class="info-tags">
+                Description:
+                {{currentPost.description}}
             </div>
-        </section>
+        </div>
+        <div id="creation time" class="info-tags">
+            <em>{{currentPost.created}}</em>
+        </div>
     </div>
-    <div id="comments" class="center">
-        <label id="comments"><strong>Comments</strong></label>
-        blah
-        blah
+    <div id="comments-container" class="center">
+        <header>
+            <label id="comments-title"><strong>Comments</strong></label>
+        </header>
+        <div id="message list">
+
+        </div>
+    </div>
+    <div id="comment-box" class="center">
+        <textarea id="comment-box-text"></textarea>
+        <button type="button"><i id="comment-box-button" class="fa fa-comment" aria-hidden="true"></i></button>
     </div>
 </body>

@@ -1,18 +1,20 @@
 <script src="https://kit.fontawesome.com/937f7202a1.js" crossorigin="anonymous"></script>
-<ul>
-    <li><a href="/">Home</a></li>
+<ul id="nav-bar">
+    <li><a href="/" class="nav-element">Home</a></li>
+    <li><a href="/Imagepost" class="nav-element">Look at Image</a></li>
+    <li><a href="/postimage" class="nav-element">Post Image</a></li>
     {{#if logged}}
-    <li><a id="logout-button">Log Out</a></li>
+    <li><a id="logout-button" class="nav-element">Log Out</a></li>
     {{else}}
-    <li><a href="/login">Login</a></li>
+    <li><a href="/login" class="nav-element">Login</a></li>
     {{/if}}
-    <li><a href="/registration">Register</a></li>
-    <li><a href="/postimage">Post Image</a></li>
-    <li><a href="/Imagepost">Look at Image</a></li>
-    <li id="search-container">
+    <div id="search-container">
         <form id="search-bar">
             <input type="text" placeholder="Search.." id="search-text" name="search-text">
-            <button type="submit" id="search-button"><i class="fas fa-search" aria-hidden="true"></i></button>
+            <button type="button" id="search-button"><i class="fas fa-search" aria-hidden="true"></i></button>
         </form>
-    </li>
+    </div>
+    <div id="banner-container">
+    <a href="/">☃️☃️☃️☃️☃️☃️☃️☃️☃️<label id="banner">Scennit</label>☃️☃️☃️☃️☃️☃️☃️☃️☃️</a>
+    </div>
 </ul>

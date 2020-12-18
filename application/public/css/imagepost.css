@@ -1,0 +1,27 @@
+#image-post{
+    background-color: inherit;
+    border: solid white;
+    margin-top: 5em;
+    display: grid;
+}
+
+#image-pic{
+    max-width: 50vw;
+    max-height: 70vh
+}
+
+#image-info{
+    width: 45vw;
+    grid-area: 1 / 2;
+    height: 45vh
+}
+
+#author-name{
+    color: white
+}
+
+
+#comments-container{
+    text-align:center;
+    width: 90vw
+}
