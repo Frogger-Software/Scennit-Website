@@ -81,35 +81,48 @@ button:hover{
 .grid-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-column-gap: 10px;
 }
 
 .flex-container {
     display: flex;
-    flex-flow: column wrap;
-    height: 200px;
+    flex-flow: column;
+    height: 350px;
     width: 200px;
     justify-content: top center;
     border-radius: 10px;
     border: solid white;
     margin: .2em;
     padding: 2px;
+    overflow: hidden;
+    margin: 7px;
 }
 
-.flex-container > div {
-    margin: 4px
-}
-
-.flex-title{
+.card-title{
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     max-width: 100%;
 }
 
-.flex-picture{
-    height: 80%;
+.card-image{
+    height: 200px;
+    width: 200px;
     text-align: center;
+    grid-area: a
+}
+
+.anchor-buttons{
+    cursor: pointer;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: white;
+    border: solid white;
+    border-radius: 6px
+}
+
+.anchor-buttons:hover{
+    background-color: white;
+    color: orange
 }
 
 #comments{
