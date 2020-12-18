@@ -1,33 +1,9 @@
 body{
     background-image: url("../images/martin-fisher-5577331_1920.jpg");
     background-position: top;
-    font-size: 1.2em;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     background-color: rgba(64,64,64,2);
     color: orange
-}
-
-div{
-    margin-top: 10px;
-    margin-bottom: 5px
-}
-
-input {
-    border: 1px solid grey;
-    border-radius: 10px;
-    float: right;
-    color: black
-}
-
-h1{
-    color: gold;
-    margin: 2px;
-    text-align: center;
-    font-variant: small-caps
-}
-
-h1:hover{
-    color: rgb(167, 51, 167);
 }
 
 .center{
@@ -44,8 +20,24 @@ h1:hover{
     width: 400px;
 }
 
+div{
+    margin-top: 10px;
+    margin-bottom: 5px
+}
+
+input {
+    border: 1px solid grey;
+    border-radius: 10px;
+    float: right;
+    color: black
+}
+
+h1:hover{
+    color: rgb(167, 51, 167);
+}
+
 .home{
-    width: 1000px;
+    width: 80vw;
 }
 
 .link{
@@ -80,7 +72,26 @@ button:hover{
 
 .grid-container {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: auto auto auto auto;
+    justify-content: space-evenly;
+}
+
+@media screen and (max-width: 1100px){
+    .grid-container{
+        grid-template-columns: auto auto auto;
+    }
+}
+
+@media screen and (max-width: 800px){
+    .grid-container{
+        grid-template-columns: auto auto;
+    }
+}
+
+@media screen and (max-width: 600px){
+    .grid-container{
+        grid-template-columns: auto;
+    }
 }
 
 .flex-container {
@@ -88,27 +99,23 @@ button:hover{
     flex-flow: column;
     height: 350px;
     width: 200px;
-    justify-content: top center;
     border-radius: 10px;
     border: solid white;
-    margin: .2em;
-    padding: 2px;
+    padding: .5em;
     overflow: hidden;
-    margin: 7px;
+    margin-top: 1em;
 }
 
-.card-title{
+.hide-overflow{
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    max-width: 100%;
 }
 
 .card-image{
     height: 200px;
     width: 200px;
     text-align: center;
-    grid-area: a
 }
 
 .anchor-buttons{
@@ -116,7 +123,7 @@ button:hover{
     text-transform: uppercase;
     text-decoration: none;
     color: white;
-    border: solid white;
+    border: solid white 2px;
     border-radius: 6px
 }
 
@@ -126,7 +133,8 @@ button:hover{
 }
 
 #comments{
-    text-align:center
+    text-align:center;
+    width: 90vw
 }
 
 #footer{
@@ -145,6 +153,8 @@ ul{
     z-index: 500;
     display:flex;
     align-items:center;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 li a{
@@ -188,7 +198,7 @@ li a:hover {
     width:20%;
     padding: 0px;
     margin: 0px;
-    border-radius: 0px
+    border-radius: 0px;
 }
 
 #flash-message{
@@ -198,7 +208,7 @@ li a:hover {
     z-index: 600;
     background-color: black;
     border-radius: 8px;
-    border: solid;
+    border: solid rgb(172, 19, 172);
     transform: translate(-50%,0);
 
 }
@@ -208,22 +218,56 @@ li a:hover {
 }
 
 .alert-danger{
-    color:red
+    color:rgb(255, 0, 0)
 }
 
 .alert-success{
-    color:green
+    color:rgb(8, 226, 8)
 }
 
 #banner{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-style: oblique;
+    font-style: italic;
     background-color: rgb(51, 48, 48);
-    width: 7em;
+    color: orange;
+    padding: 8px 16px;
 }
 
 #banner:hover{
     color: rgb(167, 51, 167)
+}
+
+a{
+    text-decoration: none;
+}
+
+
+#image-post{
+    background-color: inherit;
+    border: solid white;
+    margin-top: 5em;
+    display: grid;
+}
+
+#image-pic{
+    max-width: 50vw;
+    max-height: 70vh
+
+}
+
+#image-info{
+    width: 45vw;
+    grid-area: 1 / 2;
+    height: 45vh
+}
+
+.title{
+    color: gold;
+    margin: 2px;
+    text-align: center;
+    font-variant: small-caps;
+    font-size: 2em;
+}
+
+#author-name{
+    color: white
 }
