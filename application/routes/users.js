@@ -93,24 +93,12 @@ router.post('/login', [
     req.flash({ errors: errors.array() });
     res.redirect('/login');
   } else {
-    let baseSQL = "SELECT id, username, password FROM users WHERE username=?;"
-    let userId;
-    db.execute(baseSQL, [username])
-      .then(([results, fields]) => {
-        if (results && results.length == 1) {
-          let hashedPassword = results[0].password;
-          userId = results[0].id;
-          return bcrypt.compare(password, hashedPassword);
-
-        } else {
-          throw new UserError("invalid username and/or password", "/login", 200);
-        }
-      })
-      .then((passwordsMatched) => {
-        if (passwordsMatched) {
+    UserModel.authenticate(username, password)
+      .then((loggedUserId) => {
+        if (loggedUserId > 0) {
           successPrint(`User ${username} is logged in`);
           req.session.username = username;
-          req.session.userId = userId;
+          req.session.userId = loggedUserId;
           res.locals.logged = true;
           req.flash('success', 'You have successfully logged in');
           res.redirect('/');
