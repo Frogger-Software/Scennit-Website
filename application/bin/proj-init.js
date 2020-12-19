@@ -125,3 +125,5 @@ UNLOCK TABLES;
 `
 
 db.execute(baseSQL);
+
+console.log('proj-init ran');

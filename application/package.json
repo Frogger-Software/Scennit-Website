@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "proj-init": "./bin/proj-init"
+    "proj-init": "node ./bin/proj-init.js"
   },
   "dependencies": {
     "bcrypt": "^5.0.0",
