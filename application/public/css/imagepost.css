@@ -22,6 +22,62 @@
 
 
 #comments-container{
-    text-align:center;
-    width: 90vw
+    width: 90vw;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: auto auto;
+    grid-template-rows: 1fr 9fr;
+    height: 90vh;
+    padding: 15px;
+}
+
+#message-list{
+    grid-area: 2 / 1;
+    width: 45vw;
+    border: white solid;
+    justify-self: center;
+    overflow-y: auto;
+    display: flex;
+    flex-flow: column-reverse nowrap;
+}
+
+#comment-box{
+    grid-area: 2 / 2;
+    margin: 0;
+    width: 40vw;
+    height: 13vh;
+    justify-self: center;
+    margin-top: 70vh;
+
+}
+
+#message-list div{
+    margin: 2px
+}
+
+.message-box{
+    display: grid;
+    grid-template-areas: 
+    "author created"
+    "message message";
+    border: solid white;
+    padding: 2px
+}
+
+.comment-text{
+    grid-area: message;
+    grid-column: 1 / span 2;
+    justify-self: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 60px;
+}
+
+.comment-date{
+    font-style: italic;
+    justify-self: end;
+}
+
+.comment-author{
+    color: gold;
 }
