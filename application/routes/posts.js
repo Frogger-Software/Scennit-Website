@@ -1,11 +1,11 @@
 var express = require('express');
 var router = express.Router();
-var db = require('../config/database');
 const { successPrint, errorPrint } = require('../helpers/debug/debugprinters');
 const { check, validationResult } = require('express-validator');
 var sharp = require('sharp');
 var multer = require('multer');
 var crypto = require('crypto');
+var PostModel = require('../models/Posts');
 var PostError = require('../helpers/error/PostError');
 
 var storage = multer.diskStorage({
@@ -22,9 +22,9 @@ var storage = multer.diskStorage({
 var uploader = multer({ storage: storage });
 
 router.post('/createPost', uploader.single("uploadImage"), (req, res, next) => {
-    let fileUploaded = req.file.path;
     let title = req.body.title;
     let desc = req.body.description;
+    let fileUploaded = req.file.path;
 
     check(title).notEmpty(),
         check(desc).notEmpty(),
@@ -43,11 +43,15 @@ router.post('/createPost', uploader.single("uploadImage"), (req, res, next) => {
             .resize(200)
             .toFile(destinationOfThumbnail)
             .then(() => {
-                let baseSQL = 'INSERT INTO posts (title, description, photopath, thumbnail, created, fk_userid) VALUE (?,?,?,?, now(), ?);';
-                return db.execute(baseSQL, [title, desc, fileUploaded, destinationOfThumbnail, fk_userId]);
+                return PostModel.create(
+                    title,
+                    desc,
+                    fileUploaded,
+                    destinationOfThumbnail,
+                    fk_userId);
             })
-            .then(([results, fields]) => {
-                if (results && results.affectedRows) {
+            .then((postWasCreated) => {
+                if (postWasCreated) {
                     req.flash('success', 'your post was created successfully');
                     res.redirect('/');
                 } else {
@@ -67,40 +71,32 @@ router.post('/createPost', uploader.single("uploadImage"), (req, res, next) => {
     }
 });
 
-router.get('/search', (req, res, next) => {
-    let searchTerm = req.query.search;
-    if (!searchTerm) {
-        res.send({
-            resultsStatus: "info",
-            message: "no search term given",
-            results: []
-        });
-    } else {
-        let baseSQL = "SELECT id, title, description, thumbnail, concat_ws(' ', title, description) AS haystack \
-        FROm posts \
-        HAVING haystack like ?;";
-        let sqlReadySearchTerm = "%" + searchTerm + "%";
-        db.execute(baseSQL, [sqlReadySearchTerm])
-            .then(([results, fields]) => {
-                if (results && results.length) {
-                    res.send({
-                        resultsStatus: "info",
-                        message: `${results.length} results found`,
-                        results: results
-                    });
-                } else {
-                    db.query('SELECT id, title, description, thumbnail, created FROM posts ORDER BY created DESC LIMIT 8', [])
-                        .then(([results, fields]) => {
-                            res.send({
-                                resultsStatus: "info",
-                                message: 'No results found. 8 most recent posts displayed instead',
-                                results: results
-                            });
-                        })
-                }
-            })
-            .catch((err) => next(err));
+router.get('/search', async (req, res, next) => {
+    try {
+        let searchTerm = req.query.search;
+        if (!searchTerm) {
+            res.send({
+                message: "no search term given",
+                results: []
+            });
+        } else {
+            let results = await PostModel.search(searchTerm)
+            if (results.length) {
+                res.send({
+                    message: `${results.length} results found`,
+                    results: results
+                });
+            } else {
+                let results = await PostModel.getNRecentPosts(8);
+                res.send({
+                    message: 'No results found. 8 most recent posts displayed instead',
+                    results: results
+                });
+            }
+        }
+    } catch (err) {
+        next(err);
     }
-})
+});
 
 module.exports = router;

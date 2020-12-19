@@ -1,11 +1,9 @@
 var express = require('express');
 var router = express.Router();
-var db = require('../config/database');
 const UserModel = require('../models/Users');
 const { successPrint, errorPrint } = require('../helpers/debug/debugprinters');
 const { check, validationResult } = require('express-validator');
 const UserError = require("../helpers/error/UserError");
-var bcrypt = require('bcrypt');
 
 router.post('/register', [
   check('username').isLength({ min: 3 }),
