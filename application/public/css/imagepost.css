@@ -48,7 +48,24 @@
     height: 13vh;
     justify-self: center;
     margin-top: 70vh;
+    display: flex;
+    justify-content: center;
+}
 
+#comment-box-text{
+    width: 85%;
+    height: 80%
+}
+
+#comment-box-button{
+    width: 15%;
+    height: 90%;
+    border-radius: 0px;
+}
+
+#comment-box-button:hover{
+    background-color: white;
+    color: black;
 }
 
 #message-list div{
@@ -71,6 +88,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     max-height: 60px;
+    padding-top: 5px
 }
 
 .comment-date{

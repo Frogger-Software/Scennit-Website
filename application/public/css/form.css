@@ -54,7 +54,8 @@ button{
     padding: 9px 12px;
     border-radius: 30px;
     width: 100%;
-    margin: 5px
+    margin: 5px;
+    outline: none
 }
 
 button[type="reset"]{
