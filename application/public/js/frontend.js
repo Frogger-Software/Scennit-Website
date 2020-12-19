@@ -28,8 +28,8 @@ function createCard(postData) {
     return `<div id="post-${postData.id}" class="card flex-container grid-item" >
     <img class="card-image" src="${postData.thumbnail}" alt="Missing Image">
     <div class="card-body">
-        <p class="hide-overflow">${postData.title}</p>
-        <p class="card-dext">${postData.description}</p>
+        <p class="hide-overflow small-title">${postData.title}</p>
+        <p class="card-text hide-overflow">${postData.description}</p>
         <a href="/post/${postData.id}" class="anchor-buttons">Post Details</a>
     </div>
 </div>`
