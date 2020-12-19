@@ -22,10 +22,10 @@ CommentModel.getCommentsForPost = (postId) => {
     WHERE c.fk_postid=?
     ORDER BY c.created DESC`;
     return db.query(baseSQL, [postId])
-    .then(([results, fields]) => {
-        return Promise.resolve(results);
-    })
-    .catch(err => Promise.reject(err));
+        .then(([results, fields]) => {
+            return Promise.resolve(results);
+        })
+        .catch(err => Promise.reject(err));
 }
 
 module.exports = CommentModel;

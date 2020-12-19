@@ -17,19 +17,19 @@
     {{> footer}}
 
     {{#if logged}}
-        <script>
-            let ele = document.getElementById('logout-button');
-            if(ele){
-                ele.onclick = (event) => {
-                    fetch('/users/logout',{
-                        method:"POST"
-                    })
+    <script>
+        let ele = document.getElementById('logout-button');
+        if (ele) {
+            ele.onclick = (event) => {
+                fetch('/users/logout', {
+                    method: "POST"
+                })
                     .then((data) => {
                         location.replace('/');
                     })
-                }
             }
-        </script>
+        }
+    </script>
     {{/if}}
 </body>
 
