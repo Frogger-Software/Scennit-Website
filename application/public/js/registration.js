@@ -90,6 +90,7 @@ registerButton.onclick = function () {
     if(requirements.every(isTrue)){
         return true;
     }else{
+        alert('requirements not fulfilled');
         return false;
     }
 }
