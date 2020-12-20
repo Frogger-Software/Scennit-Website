@@ -25,6 +25,7 @@ router.post('/register', [
 
   if (!errors.isEmpty()) {
     console.log({ errors: errors.array() });
+    req.flash('error', 'registration failed');
     res.redirect('/registration');
   } else {
 
@@ -88,7 +89,8 @@ router.post('/login', [
   var errors = validationResult(req);
 
   if (!errors.isEmpty()) {
-    req.flash({ errors: errors.array() });
+    console.log({ errors: errors.array() });
+    req.flash('error', 'login failed');
     res.redirect('/login');
   } else {
     UserModel.authenticate(username, password)

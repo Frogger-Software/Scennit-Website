@@ -33,6 +33,7 @@ router.post('/createPost', uploader.single("uploadImage"), (req, res, next) => {
     var errors = validationResult(req);
     if (!errors.isEmpty()) {
         console.log({ errors: errors.array() });
+        req.flash('error', 'post failed');
         res.redirect('/');
     } else {
         let fileAsThumbnail = `thumbnail-${req.file.filename}`;
