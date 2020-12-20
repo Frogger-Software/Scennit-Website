@@ -15,7 +15,7 @@ router.post('/register', [
   check('username').isLength({ min: 3 }),
   check('email').isEmail(),
   check('password').custom(async (password) => {//didn't use .isStrongPassword() because it excludes the @ symbol
-    const passRegex = new RegExp("^(?=.*[A-Z])(?=.*[0-9])(?=.*[/\*-+!@#\$%\^&])");
+    const passRegex = new RegExp("^(?=.*[A-Z])(?=.*[0-9])(?=.*[/*\-+!@#$^&()])");
     if (!(passRegex.test(password))) {
       throw new Error('weak password');
     }
@@ -23,7 +23,7 @@ router.post('/register', [
   check('cpassword').custom(async (cpassword, { req }) => {
     const password = req.body.password
 
-    if (password !== cpassword) {
+    if (password != cpassword) {
       throw new Error('Passwords must be the same')
     }
   })

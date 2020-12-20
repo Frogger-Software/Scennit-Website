@@ -43,7 +43,7 @@ password.onchange = function () {
     let req1 = document.getElementById('pass-req1');
     let req2 = document.getElementById('pass-req2');
     let str = password.value;
-    const passRegex = new RegExp("^(?=.*[A-Z])(?=.*[0-9])(?=.*[/\*-+!@#\$%\^&])");
+    const passRegex = new RegExp("^(?=.*[A-Z])(?=.*[0-9])(?=.*[/*\-+!@#$^&()])");
     if (str.length >= 8) {
         req1.style = "color: rgb(60, 255, 0)";
         requirements[3] = true;
@@ -66,7 +66,7 @@ passwordConfirm.onchange = function () {
     let req = document.getElementById('cpass-req');
     let str1 = password.value;
     let str2 = passwordConfirm.value;
-    if (str1 = str2) {
+    if (str1 == str2) {
         req.style = "color: rgb(60, 255, 0)";
         requirements[5] = true;
     } else {
