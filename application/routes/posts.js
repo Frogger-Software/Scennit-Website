@@ -21,14 +21,17 @@ var storage = multer.diskStorage({
 
 var uploader = multer({ storage: storage });
 
-router.post('/createPost', uploader.single("uploadImage"), (req, res, next) => {
-    let title = req.body.title;
-    let desc = req.body.description;
-    let fileUploaded = req.file.path;
+router.post('/createPost', [
 
-    check(title).notEmpty(),
-        check(desc).notEmpty(),
-        check(fileUploaded).notEmpty()
+    check('title').notEmpty(),
+    check('description').notEmpty(),
+    check('uploadImage').custom(function(fileExists){
+        if (fileExists == undefined) {
+            throw new Error('no file submitted')
+        }
+    })
+
+],uploader.single("uploadImage"), (req, res, next) => {
 
     var errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -36,6 +39,9 @@ router.post('/createPost', uploader.single("uploadImage"), (req, res, next) => {
         req.flash('error', 'post failed');
         res.redirect('/');
     } else {
+        let title = req.body.title;
+        let desc = req.body.description;
+        let fileUploaded = req.file.path;
         let fileAsThumbnail = `thumbnail-${req.file.filename}`;
         let destinationOfThumbnail = req.file.destination + "/" + fileAsThumbnail;
         let fk_userId = req.session.userId;

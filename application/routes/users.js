@@ -6,9 +6,20 @@ const { check, validationResult } = require('express-validator');
 const UserError = require("../helpers/error/UserError");
 
 router.post('/register', [
+  check('username').custom(async (username) => {
+    const usernameRegex = new RegExp("^[a-zA-z]");
+    if (!(usernameRegex.test(username))) {
+      throw new Error('must begin with alpha');
+    }
+  }),
   check('username').isLength({ min: 3 }),
   check('email').isEmail(),
-  check('password').isStrongPassword().withMessage('weak password'),
+  check('password').custom(async (password) => {//didn't use .isStrongPassword() because it excludes the @ symbol
+    const passRegex = new RegExp("^(?=.*[A-Z])(?=.*[0-9])(?=.*[/\*-+!@#\$%\^&])");
+    if (!(passRegex.test(password))) {
+      throw new Error('weak password');
+    }
+  }),
   check('cpassword').custom(async (cpassword, { req }) => {
     const password = req.body.password
 
