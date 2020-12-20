@@ -19,10 +19,12 @@ Please follow the instructions below and fill in the information requested when 
 # Build/Run Instructions
 
 ## Build Instructions
-1. have nodeJS installed on your computer
+1. have nodeJS and mySQL installed on your computer
 2. open the file with a terminal
-3. cd application
-4. npm install
+3. copy text of 'db dump' in config folder
+4. paste and execute in workbench
+5. cd application
+6. npm install
 
 ## Run Instructions
 1. npm start
