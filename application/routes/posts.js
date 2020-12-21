@@ -21,62 +21,63 @@ var storage = multer.diskStorage({
 
 var uploader = multer({ storage: storage });
 
-router.post('/createPost', [
+router.post('/createPost',
+    // [
+    //     check('title').notEmpty(),
+    //     check('description').notEmpty(),
+    //     check('uploadImage').custom(function (fileExists) {
+    //         if (fileExists == undefined) {
+    //             throw new Error('no file submitted')
+    //         }
+    //     })
 
-    check('title').notEmpty(),
-    check('description').notEmpty(),
-    check('uploadImage').custom(function(fileExists){
-        if (fileExists == undefined) {
-            throw new Error('no file submitted')
-        }
-    })
-
-],uploader.single("uploadImage"), (req, res, next) => {
-
-    var errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        console.log({ errors: errors.array() });
-        req.flash('error', 'post failed');
-        res.redirect('/');
-    } else {
+    // ],
+    uploader.single("uploadImage"), (req, res, next) => {
         let title = req.body.title;
         let desc = req.body.description;
-        let fileUploaded = req.file.path;
-        let fileAsThumbnail = `thumbnail-${req.file.filename}`;
-        let destinationOfThumbnail = req.file.destination + "/" + fileAsThumbnail;
-        let fk_userId = req.session.userId;
 
-        sharp(fileUploaded)
-            .resize(200)
-            .toFile(destinationOfThumbnail)
-            .then(() => {
-                return PostModel.create(
-                    title,
-                    desc,
-                    fileUploaded,
-                    destinationOfThumbnail,
-                    fk_userId);
-            })
-            .then((postWasCreated) => {
-                if (postWasCreated) {
-                    req.flash('success', 'your post was created successfully');
-                    res.redirect('/');
-                } else {
-                    throw new PostError('post could not be created', '/postimage', 200);
-                }
-            })
-            .catch((err) => {
-                if (err instanceof PostError) {
-                    errorPrint(err.getMessage());
-                    req.flash('error', err.getMessage());
-                    res.status(err.getStatus());
-                    res.redirect(err.getRedirectURL());
-                } else {
-                    next(err);
-                }
-            })
-    }
-});
+        // var errors = validationResult(req);
+        if (!title || !desc || !req.file) {
+            // console.log({ errors: errors.array() });
+            req.flash('error', 'post failed');
+            res.redirect('/');
+        } else {
+            let fileUploaded = req.file.path;
+            let fileAsThumbnail = `thumbnail-${req.file.filename}`;
+            let destinationOfThumbnail = req.file.destination + "/" + fileAsThumbnail;
+            let fk_userId = req.session.userId;
+
+            sharp(fileUploaded)
+                .resize(200)
+                .toFile(destinationOfThumbnail)
+                .then(() => {
+                    return PostModel.create(
+                        title,
+                        desc,
+                        fileUploaded,
+                        destinationOfThumbnail,
+                        fk_userId);
+                })
+                .then((postWasCreated) => {
+                    if (postWasCreated) {
+                        req.flash('success', 'your post was created successfully');
+                        res.redirect('/');
+                    } else {
+                        throw new PostError('post could not be created', '/postimage', 200);
+                    }
+                })
+                .catch((err) => {
+                    if (err instanceof PostError) {
+                        errorPrint(err.getMessage());
+                        req.flash('error', err.getMessage());
+                        res.status(err.getStatus());
+                        res.redirect(err.getRedirectURL());
+                    } else {
+                        next(err);
+                    }
+                })
+        }
+    });
 
 router.get('/search', async (req, res, next) => {
     try {
