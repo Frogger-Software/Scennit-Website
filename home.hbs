@@ -1,0 +1,17 @@
+<head>
+    <link rel="stylesheet" type="text/css" href="/public/css/home.css">
+    <title>Scennit: the backdoor of the internet</title>
+</head>
+
+<body>
+    <div class="center home">
+        <header>
+            <h1 class="title">Scennit</h1>
+        </header>
+        <div class="grid-container" id="main-content">
+            {{#each results}}
+            {{> card this}}
+            {{/each}}
+        </div>
+    </div>
+</body>

@@ -1,0 +1,31 @@
+<head>
+    <title>Post Image</title>
+</head>
+
+<body>
+    <div class="center">
+        <header>
+            <h1 class="title">Post Image Form</h1>
+        </header>
+        <form method="POST" enctype="multipart/form-data" action="/posts/createPost">
+            <div>
+                <label><strong>Title</strong></label>
+                <input type="text" required name="title" />
+            </div>
+            <div>
+                <label><strong>Description</strong></label>
+                <input type="text" required name="description" />
+            </div>
+            <div>
+                <label><strong>Image</strong></label>
+                <input class="fileInput" type="file" required name="uploadImage" />
+            </div>
+            <div>
+                <label>Acceptable Use Policy</label>
+                <input type="checkbox" required />
+            </div>
+            <button type="submit">Submit</button>
+            <button type="reset">Reset</button>
+        </form>
+    </div>
+</body>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="/public/css/scennit.css">
+    <script defer src="/public/js/frontend.js"></script>
+</head>
+
+<body>
+    {{> header}}
+    {{#if (emptyObject messages)}}
+    {{> flashmessage}}
+    {{/if}}
+    {{{body}}}
+    {{> footer}}
+
+    {{#if logged}}
+    <script>
+        let ele = document.getElementById('logout-button');
+        if (ele) {
+            ele.onclick = (event) => {
+                fetch('/users/logout', {
+                    method: "POST"
+                })
+                    .then((data) => {
+                        location.replace('/');
+                    })
+            }
+        }
+    </script>
+    {{/if}}
+</body>
+
+</html>
