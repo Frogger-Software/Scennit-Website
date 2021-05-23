@@ -24,7 +24,9 @@ postMiddleware.getPostById = async function (req, res, next) {
             next();
         } else {
             res.flash('error', 'this is not the post you are looking for');
-            res.redirect('/');
+            req.session.save( err => {
+                res.redirect('/');
+            })
         }
     } catch (err) {
         next(err);

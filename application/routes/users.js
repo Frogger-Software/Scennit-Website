@@ -37,7 +37,10 @@ router.post('/register', [
   if (!errors.isEmpty()) {
     console.log({ errors: errors.array() });
     req.flash('error', 'registration failed');
-    res.redirect('/registration');
+    req.session.save(err => {
+      res.redirect('/registration');
+    })
+
   } else {
 
     UserModel.usernameExists(username)
@@ -73,7 +76,9 @@ router.post('/register', [
         } else {
           successPrint("User was created");
           req.flash('success', 'user account has been made');
-          res.redirect('/login');
+          req.session.save(err => {
+            res.redirect('/login');
+          })
         }
       })
       .catch((err) => {
@@ -102,7 +107,9 @@ router.post('/login', [
   if (!errors.isEmpty()) {
     console.log({ errors: errors.array() });
     req.flash('error', 'login failed');
-    res.redirect('/login');
+    req.session.save(err => {
+      res.redirect('/login');
+    })
   } else {
     UserModel.authenticate(username, password)
       .then((loggedUserId) => {
@@ -112,7 +119,9 @@ router.post('/login', [
           req.session.userId = loggedUserId;
           res.locals.logged = true;
           req.flash('success', 'You have successfully logged in');
-          res.redirect('/');
+          req.session.save(err => {
+            res.redirect('/');
+          })
         } else {
           throw new UserError("Invalid username and/or password", "/login", 200);
         }
@@ -123,7 +132,9 @@ router.post('/login', [
           errorPrint(err.getMessage());
           req.flash('error', err.getMessage());
           res.status(err.getStatus());
-          res.redirect('/login');
+          req.session.save(err => {
+            res.redirect('/login');
+          })
         } else {
           next(err);
         }
